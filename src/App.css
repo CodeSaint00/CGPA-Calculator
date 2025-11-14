@@ -1,1 +1,132 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+body {
+  background: linear-gradient(rgb(221, 245, 180), transparent);
+  height: 100vh;
+  font-family: "poppins", sans-serif;
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+h1 {
+  color: rgb(77, 53, 32);
+}
+.fragment {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+}
+.section-1 {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+.fragment .section-1 form {
+  width: 60%;
+  height: 100%;
+  background-color: rgb(219, 236, 189);
+  border-radius: 1em;
+  box-shadow: 1px 1px 20px #3333336f;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  gap: 1em;
+  align-items: center;
+  padding-top: 01em;
+  padding-bottom: 01em;
+}
+.fragment .section-1 form input {
+  width: 80%;
+  height: 8vh;
+  padding-left: 1em;
+  border-radius: 0.5em;
+  border: 1px solid #333;
+  font-weight: 500;
+}
+.fragment .section-1 form select {
+  padding: 0.5em;
+  width: 20%;
+  border: 1px solid #333;
+  border-radius: 0.5em;
+}
+.fragment .section-1 form select option {
+  font-family: "poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.fragment .section-1 form .buttons {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  padding-top: 2em;
+}
+.fragment .section-1 form .buttons button {
+  padding: 0.6em;
+  border: none;
+  border-radius: 0.5em;
+  background-color: #333;
+  color: whitesmoke;
+  font-weight: bold;
+}
+.fragment .course {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: start;
+  width: 50%;
+  gap: 1em;
+}
+.fragment .course .section {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #333;
+  width: 20%;
+  height: 10%;
+  color: whitesmoke;
+  font-weight: bold;
+  border-radius: 0.25em;
+}
+.fragment .course p{
+  color: #3333332c;
+  font-size: 4em;
+  text-align: center;
+  font-weight: bold;
+}
+.fragment .course .section h4 {
+  font-size: 1.2em;
+}
+.fragment .course .section .remove{
+  font-size: 0.5em;
+  background-color: #686666;
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+.fragment .course .section .courseName {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-left: 0.25em;
+  padding-right: 0.25em;
+}
+.fragment .course .section .courseName h5 {
+  font-size: 0.5em;
+}
+.fragment .course .section .courseName h5 span{
+    font-size: 1.3em;
+}
+.fragment .course .section h5 {
+  font-size: 0.6em;
+}
