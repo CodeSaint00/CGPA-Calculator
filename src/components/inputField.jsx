@@ -1,7 +1,7 @@
 import { useState, useReducer, useEffect, useRef } from "react";
+import { setItem, getItem } from "../utils/localStorage";
 
 export default function InputField() {
-  const initialCourses = [];
 
   function actions(subjects, action) {
     switch (action.type) {
@@ -44,20 +44,43 @@ export default function InputField() {
         return subjects;
     }
   }
-  const [subjects, dispatch] = useReducer(actions, initialCourses);
-
-  const [course, setCourse] = useState({
-    id: Date.now(),
-    grade: "",
-    courseCode: "",
-    courseTitle: "",
-    creditLoad: "",
+  const [subjects, dispatch] = useReducer(actions, [], () => {
+    const saved = getItem("subjects");
+    return saved || [];
   });
+
+  useEffect(() => {
+    setItem("subjects", subjects);
+  }, [subjects]);
+
+  const [course, setCourse] = useState(() => {
+    const item = getItem("course");
+    return (
+      item || {
+        id: Date.now(),
+        grade: "",
+        courseCode: "",
+        courseTitle: "",
+        creditLoad: "",
+      }
+    );
+  });
+
+  useEffect(() => {
+    setItem("course", course);
+  }, [course]);
+
   function courseDisplay(e) {
     e.preventDefault();
     dispatch({
       type: "ADD_COURSE",
       payload: { ...course, id: subjects.length },
+    });
+    setCourse({
+      grade: "",
+      courseCode: "",
+      courseTitle: "",
+      creditLoad: "",
     });
   }
   function clearAll() {
@@ -161,7 +184,12 @@ export default function InputField() {
             ))
           )}
         </div>
-        <button className="clearAll" onClick={() => dispatch({ type: "CLEAR_ALL" })}>Clear All</button>
+        <button
+          className="clearAll"
+          onClick={() => dispatch({ type: "CLEAR_ALL" })}
+        >
+          Clear All
+        </button>
       </div>
     </div>
   );
