@@ -6,7 +6,23 @@ export default function InputField() {
   function actions(subjects, action) {
     switch (action.type) {
       case "ADD_COURSE": {
+        const gradePoint = {
+          A: 5,
+          B: 4,
+          C: 3,
+          D: 2,
+          E: 1,
+          F: 0,
+        };
         const addCourses = action.payload;
+        const numeric = gradePoint[addCourses.grade];
+
+        const calculatedAverage = numeric * addCourses.creditLoad;
+        const updatedCourses = {
+          ...addCourses,
+          numericGrade: numeric,
+          GP: calculatedAverage,
+        };
         if (
           !addCourses.grade ||
           !addCourses.courseCode ||
@@ -16,10 +32,13 @@ export default function InputField() {
           alert("please fill in all fields");
           return subjects;
         }
-        return [...subjects, addCourses];
+        return [...subjects, updatedCourses];
       }
       case "REMOVE_COURSE": {
         return subjects.filter((score) => score.id !== action.payload);
+      }
+      case "CLEAR_ALL": {
+        return [];
       }
       default:
         return subjects;
@@ -36,7 +55,10 @@ export default function InputField() {
   });
   function courseDisplay(e) {
     e.preventDefault();
-    dispatch({ type: "ADD_COURSE", payload: { ...course, id: Date.now() } });
+    dispatch({
+      type: "ADD_COURSE",
+      payload: { ...course, id: subjects.length },
+    });
   }
   function clearAll() {
     setCourse({
@@ -46,6 +68,12 @@ export default function InputField() {
       creditLoad: "",
     });
   }
+
+  const creditunitsArray = subjects.map((course) => course.creditLoad);
+  const total = creditunitsArray.reduce((t, u) => t + u, 0);
+  const CGP = subjects.map((course) => course.GP);
+  const GPA = CGP.reduce((t, u) => t + u, 0);
+  const CGPA = (GPA / total).toFixed(2);
 
   const inputRef = useRef(null);
   useEffect(() => {
@@ -101,33 +129,39 @@ export default function InputField() {
             <button type="reset">Clear</button>
           </div>
         </form>
+        <h3>Total Credit Unit load is {total}</h3>
+        <br />
       </div>
       <div className="course">
-        {subjects.length === 0 ? (
-          <p>No Scores Yet</p>
-        ) : (
-          subjects.map((course) => (
-            <div key={course.id} className="section">
-              <h4>{course.grade}</h4>
-              <div className="courseName">
-                <h5>
-                  <span>{course.courseCode} </span>
-                  <br />
-                  {course.courseTitle}
-                </h5>
+        <h1>Your GP is {CGPA}</h1>
+        <div className="section-2">
+          {subjects.length === 0 ? (
+            <p>No Scores Yet</p>
+          ) : (
+            subjects.map((course) => (
+              <div key={course.id} className="section">
+                <h4>{course.grade}</h4>
+                <div className="courseName">
+                  <h5>
+                    <span>{course.courseCode} </span>
+                    <br />
+                    {course.courseTitle}
+                  </h5>
+                </div>
+                <span>{course.creditLoad} Unit</span>
+                <button
+                  className="remove"
+                  onClick={() =>
+                    dispatch({ type: "REMOVE_COURSE", payload: course.id })
+                  }
+                >
+                  Delete
+                </button>
               </div>
-              <span>{course.creditLoad} Unit</span>
-              <button
-                className="remove"
-                onClick={() =>
-                  dispatch({ type: "REMOVE_COURSE", payload: course.id })
-                }
-              >
-                Delete
-              </button>
-            </div>
-          ))
-        )}
+            ))
+          )}
+        </div>
+        <button className="clearAll" onClick={() => dispatch({ type: "CLEAR_ALL" })}>Clear All</button>
       </div>
     </div>
   );
