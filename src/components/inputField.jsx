@@ -2,7 +2,6 @@ import { useState, useReducer, useEffect, useRef } from "react";
 import { setItem, getItem } from "../utils/localStorage";
 
 export default function InputField() {
-
   function actions(subjects, action) {
     switch (action.type) {
       case "ADD_COURSE": {
@@ -150,6 +149,9 @@ export default function InputField() {
           <div className="buttons">
             <button type="submit">Record</button>
             <button type="reset">Clear</button>
+            <button type="button">
+              Add another <br /> Semester
+            </button>
           </div>
         </form>
         <h3>Total Credit Unit load is {total}</h3>
@@ -163,14 +165,9 @@ export default function InputField() {
           ) : (
             subjects.map((course) => (
               <div key={course.id} className="section">
+                <h6>{course.courseTitle}</h6>
+                <h5>{course.courseCode} </h5>
                 <h4>{course.grade}</h4>
-                <div className="courseName">
-                  <h5>
-                    <span>{course.courseCode} </span>
-                    <br />
-                    {course.courseTitle}
-                  </h5>
-                </div>
                 <span>{course.creditLoad} Unit</span>
                 <button
                   className="remove"

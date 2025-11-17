@@ -86,65 +86,52 @@ h1 {
 .fragment .course .section-2{
   width: 100%;
   display: flex;
-  flex-flow: row wrap;
-  justify-content: start;
-  gap: 1em;
-}
-.fragment .course .section-2 .section {
-  display: flex;
-  flex-flow: column;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
   align-items: center;
-  justify-content: center;
-  background-color: #333;
+  background-color: #e8f072;
+  box-shadow: 1px 1px 20px #3333336b;
+}
+.fragment .course .section-2 .section{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 95%;
+  margin: 0.25em;
+  border-bottom: 1px solid #333;
+  height: 2em;
+}
+.fragment .course .section-2 .section h6{
   width: 20%;
-  height: 10%;
-  color: whitesmoke;
-  font-weight: bold;
-  border-radius: 0.25em;
 }
-.fragment .course p{
-  color: #3333332c;
-  font-size: 4em;
+.fragment .course .section-2 .section h5{
+  width: 15%;
   text-align: center;
-  font-weight: bold;
 }
-.fragment .course .section h4 {
-  font-size: 1.2em;
+.fragment .course .section-2 .section h4{
+  width: 10%;
+  text-align: center;
 }
-.fragment .course .section .remove{
-  font-size: 0.5em;
-  background-color: #686666;
+.fragment .course .section-2 .section span{
+  width: 15%;
+  text-align: center;
+}
+.fragment .course .section-2 .section .remove{
+  background-color: rgb(120, 14, 14);
+  border-radius: 0.25em;
   color: #fff;
   font-weight: bold;
-  margin-bottom: 0.5em;
+  outline: none;
+  border: none;
+  padding: 0.25em;
 }
-.fragment .course .section p{
-  color: white;
+.clearAll{
+  padding: 0.25em;
+  color: #fff;
   font-weight: bold;
-}
-.fragment .course .section .courseName {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding-left: 0.25em;
-  padding-right: 0.25em;
-}
-.fragment .course .section .courseName h5 {
-  font-size: 0.5em;
-}
-.fragment .course .section .courseName h5 span{
-    font-size: 1.3em;
-}
-.fragment .course .section h5 {
-  font-size: 0.6em;
-}
-.fragment .course .clearAll{
-  background-color: rgb(86, 55, 38);
-  padding: 0.5em;
-  font-weight: 500;
-  color: whitesmoke;
-  border-radius: 0.5em;
+  border: none;
+  border-radius: 0.25em;
+  background-color: rgb(6, 73, 85);
   place-self: center;
 }
